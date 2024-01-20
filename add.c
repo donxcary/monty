@@ -1,3 +1,4 @@
+
 #include "monty.h"
 
 /**
@@ -9,16 +10,21 @@
  */
 void p_add(stack_t **head, unsigned int counter)
 {
-	stack_t *tmp;
+	stack_t *temp;
+	int sum;
 
-	if (head == NULL || *head == NULL || (*head)->next == NULL)
+	if (*head == NULL || (*head)->next == NULL)
 	{
-		fprintf(stderr, "L%u: can't add, stack too short\n", counter);
+		fprintf(stderr,
+			"L%d: can't add, stack too short\n",
+				counter);
 		exit(EXIT_FAILURE);
 	}
-	tmp = *head;
+	temp = *head;
+	sum = temp->n + temp->next->n;
+	temp->next->n = sum;
 	*head = (*head)->next;
-	(*head)->n += tmp->n;
+	free(temp);
 	(*head)->prev = NULL;
-	free(tmp);
 }
+

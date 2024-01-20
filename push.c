@@ -7,30 +7,32 @@
  *
  * Description: adds a new node at the beginning of a stack_t list
  */
+
+/* This function implements the push opcode */
 void p_push(stack_t **head, unsigned int number)
 {
-	stack_t *new;
+	stack_t *new_node;
 
-	if (head == NULL)
+	/* Allocate memory for the new node */
+	new_node = malloc(sizeof(stack_t));
+	if (new_node == NULL)
 	{
-		fprintf(stderr, "L%u: stack not found\n", number);
+		fprintf(stderr,
+			"Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	if (bus.arg == NULL || !is_number(bus.arg))
-	{
-		fprintf(stderr, "L%u: usage: push integer\n", number);
-		exit(EXIT_FAILURE);
-	}
-	new = malloc(sizeof(stack_t));
-	if (new == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-	new->n = atoi(bus.arg);
-	new->prev = NULL;
-	new->next = *head;
+
+	/* Assign the value and the pointers of the new node */
+	new_node->n = bus.arg;
+	new_node->prev = NULL;
+	new_node->next = *head;
+
+	/* If the stack is not empty, update the prev pointer of the old head */
 	if (*head != NULL)
-		(*head)->prev = new;
-	*head = new;
+	{
+		(*head)->prev = new_node;
+	}
+
+	/* Make the new node the new head of the stack */
+	*head = new_node;
 }

@@ -7,13 +7,13 @@
  *
  * Description: prints all the elements of a stack_t list
  */
+
+/* This function implements the pall opcode */
 void p_pall(stack_t **head, unsigned int number)
 {
 	stack_t *current;
 
-	(void)number;
-	if (head == NULL)
-		return;
+	/* Traverse the stack from the head and print the values */
 	current = *head;
 	while (current != NULL)
 	{

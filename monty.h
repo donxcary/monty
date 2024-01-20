@@ -56,9 +56,9 @@ typedef struct instruction_s
 } instruction_t;
 
 char *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
-ssize_t getstdin(char **lineptr, int file)
+ssize_t getstdin(char **lineptr, int file);
 ssize_t read_buffer(int file, char *buffer, int *start, int *end);
-int check_newline(char *buffer, int start, int end);;
+int check_newline(char *buffer, int start, int end);
 char  *clean_line(char *content);
 void p_push(stack_t **head, unsigned int number);
 void p_pall(stack_t **head, unsigned int number);
@@ -81,4 +81,5 @@ void addnode(stack_t **head, int n);
 void addqueue(stack_t **head, int n);
 void p_queue(stack_t **head, unsigned int counter);
 void p_stack(stack_t **head, unsigned int counter);
+int is_number(char *s);
 #endif

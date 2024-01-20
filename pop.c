@@ -1,3 +1,4 @@
+
 #include "monty.h"
 
 /**
@@ -9,17 +10,18 @@
  */
 void p_pop(stack_t **head, unsigned int counter)
 {
-	stack_t *tmp;
+	stack_t *temp;
 
-	if (head == NULL || *head == NULL)
+	if (*head == NULL)
 	{
-		fprintf(stderr, "L%u: can't pop an empty stack\n", counter);
+		fprintf(stderr,
+			"L%d: can't pop an empty stack\n",
+				counter);
 		exit(EXIT_FAILURE);
 	}
-	tmp = *head;
+	temp = *head;
 	*head = (*head)->next;
-	if (*head != NULL)
+	free(temp);
+	if (*head)
 		(*head)->prev = NULL;
-	free(tmp);
 }
-

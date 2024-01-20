@@ -9,19 +9,19 @@
  */
 void p_swap(stack_t **head, unsigned int counter)
 {
-	stack_t *tmp;
+	stack_t *temp;
+	int value;
 
-	if (head == NULL || *head == NULL || (*head)->next == NULL)
+	if (*head == NULL || (*head)->next == NULL)
 	{
-		fprintf(stderr, "L%u: can't swap, stack too short\n", counter);
+		fprintf(stderr,
+			"L%d: can't swap, stack too short\n",
+			counter);
 		exit(EXIT_FAILURE);
 	}
-	tmp = (*head)->next;
-	(*head)->next = tmp->next;
-	if (tmp->next != NULL)
-		tmp->next->prev = *head;
-	tmp->next = *head;
-	(*head)->prev = tmp;
-	tmp->prev = NULL;
-	*head = tmp;
+	temp = *head;
+	value = temp->n;
+	temp->n = temp->next->n;
+	temp->next->n = value;
 }
+
